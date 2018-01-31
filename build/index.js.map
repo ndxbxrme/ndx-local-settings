@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../src/",
+  "sources": [
+    "index.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;EAAA;AAAA,MAAA,CAAA,EAAA;;EACA,MAAA,GAAS;;AACT;IACE,MAAA,GAAS,OAAO,CAAC,MAAR,CAAe,KAAf,EADX;GAAA,aAAA;IAEM;IACJ,MAAA,GAAS,OAAO,CAAC,MAAR,CAAe,KAAf,EAAsB,EAAtB,EAHX;;;EAIA,MAAM,CAAC,OAAP,CAAe,eAAf,EAAgC,QAAA,CAAC,IAAD,CAAA;AAC9B,QAAA,eAAA,EAAA;IAAA,eAAA,GAAkB,QAAA,CAAA,CAAA;AAChB,UAAA,MAAA,EAAA;MAAA,MAAA,GAAS,CAAA;MACT,IAAG,YAAA,IAAiB,CAAA,IAAA,GAAO,IAAI,CAAC,OAAL,CAAA,CAAP,CAApB;AACE;UACE,MAAA,GAAS,IAAI,CAAC,KAAL,CAAW,YAAY,CAAC,OAAb,CAAqB,IAAI,CAAC,GAA1B,CAAX,CAAA,IAA8C,CAAA,EADzD;SAAA,iBADF;;aAGA;IALgB;IAMlB,eAAA,GAAkB,QAAA,CAAC,KAAD,CAAA;AAChB,UAAA;MAAA,IAAG,YAAA,IAAiB,CAAA,IAAA,GAAO,IAAI,CAAC,OAAL,CAAA,CAAP,CAApB;QACE,YAAY,CAAC,OAAb,CAAqB,IAAI,CAAC,GAA1B,EAA+B,IAAI,CAAC,SAAL,CAAe,KAAf,CAA/B,EADF;;IADgB;WAIlB;MAAA,GAAA,EAAK,QAAA,CAAC,GAAD,CAAA;AACH,YAAA,GAAA,EAAA,IAAA,EAAA,CAAA,EAAA,GAAA,EAAA,MAAA,EAAA;QAAA,QAAA,GAAW,eAAA,CAAA;QACX,IAAA,GAAO,GAAG,CAAC,KAAJ,CAAU,KAAV;QACP,MAAA,GAAS;QACT,KAAA,sCAAA;;UACE,MAAA,GAAS,MAAO,CAAA,GAAA,CAAP,IAAe,CAAA;QAD1B;eAEA;MANG,CAAL;MAOA,GAAA,EAAK,QAAA,CAAC,GAAD,EAAM,KAAN,CAAA;AACH,YAAA,GAAA,EAAA,IAAA,EAAA,CAAA,EAAA,CAAA,EAAA,GAAA,EAAA,MAAA,EAAA;QAAA,QAAA,GAAW,eAAA,CAAA;QACX,IAAA,GAAO,GAAG,CAAC,KAAJ,CAAU,KAAV;QACP,MAAA,GAAS;QACT,KAAA,8CAAA;;UACE,IAAG,CAAI,MAAO,CAAA,GAAA,CAAd;YACE,MAAO,CAAA,GAAA,CAAP,GAAc,CAAA,EADhB;;UAEA,IAAG,CAAA,GAAI,IAAI,CAAC,MAAL,GAAc,CAArB;YACE,MAAA,GAAS,MAAO,CAAA,GAAA,EADlB;WAAA,MAAA;YAGE,MAAO,CAAA,GAAA,CAAP,GAAc,MAHhB;;QAHF;eAOA,eAAA,CAAgB,QAAhB;MAXG;IAPL;EAX8B,CAAhC;AANA",
+  "sourcesContent": [
+    "'use strict'\r\nmodule = null\r\ntry\r\n  module = angular.module 'ndx'\r\ncatch e\r\n  module = angular.module 'ndx', []\r\nmodule.factory 'LocalSettings', (Auth) ->\r\n  getUserSettings = ->\r\n    output = {}\r\n    if localStorage and user = Auth.getUser()\r\n      try\r\n        output = JSON.parse(localStorage.getItem(user._id)) or {}\r\n    output\r\n  setUserSettings = (value) ->\r\n    if localStorage and user = Auth.getUser()\r\n      localStorage.setItem user._id, JSON.stringify(value)\r\n    return\r\n  get: (key) ->\r\n    settings = getUserSettings()\r\n    bits = key.split /\\./g\r\n    output = settings\r\n    for bit in bits\r\n      output = output[bit] or {}\r\n    output\r\n  set: (key, value) ->\r\n    settings = getUserSettings()\r\n    bits = key.split /\\./g\r\n    output = settings\r\n    for bit, i in bits\r\n      if not output[bit]\r\n        output[bit] = {}\r\n      if i < bits.length - 1\r\n        output = output[bit]\r\n      else\r\n        output[bit] = value\r\n    setUserSettings settings"
+  ]
+}
