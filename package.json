@@ -1,6 +1,6 @@
 {
   "name": "ndx-local-settings",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "local user settings for ndx-framework",
   "main": "build/index.js",
   "scripts": {

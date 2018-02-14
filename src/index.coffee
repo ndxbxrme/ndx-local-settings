@@ -10,11 +10,11 @@ module.factory 'LocalSettings', (Auth, $rootElement) ->
     output = {}
     if localStorage and user = Auth.getUser()
       try
-        output = JSON.parse(localStorage.getItem("#{appName}_#{user._id}")) or {}
+        output = JSON.parse(localStorage.getItem(appName + '_' + user._id)) or {}
     output
   setUserSettings = (value) ->
     if localStorage and user = Auth.getUser()
-      localStorage.setItem "#{appName}_#{user._id}", JSON.stringify(value)
+      localStorage.setItem appName + '_' + user._id, JSON.stringify(value)
     return
   getGlobalSettings = ->
     output = {}

@@ -19,7 +19,7 @@
       output = {};
       if (localStorage && (user = Auth.getUser())) {
         try {
-          output = JSON.parse(localStorage.getItem(`${appName}_${user._id}`)) || {};
+          output = JSON.parse(localStorage.getItem(appName + '_' + user._id)) || {};
         } catch (error) {}
       }
       return output;
@@ -27,7 +27,7 @@
     setUserSettings = function(value) {
       var user;
       if (localStorage && (user = Auth.getUser())) {
-        localStorage.setItem(`${appName}_${user._id}`, JSON.stringify(value));
+        localStorage.setItem(appName + '_' + user._id, JSON.stringify(value));
       }
     };
     getGlobalSettings = function() {
